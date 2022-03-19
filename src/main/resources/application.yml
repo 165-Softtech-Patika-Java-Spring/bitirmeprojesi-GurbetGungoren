@@ -9,3 +9,5 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create-drop
+tax-rates:
+  food: 0.01
