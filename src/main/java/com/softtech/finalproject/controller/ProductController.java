@@ -3,7 +3,7 @@ package com.softtech.finalproject.controller;
 import com.softtech.finalproject.dto.ProductDto;
 import com.softtech.finalproject.dto.UpdateProductDto;
 import com.softtech.finalproject.dto.UpdateProductPriceDto;
-import com.softtech.finalproject.gen.RestResponse;
+import com.softtech.finalproject.gen.dto.RestResponse;
 import com.softtech.finalproject.model.ProductTypeEnum;
 import com.softtech.finalproject.service.ProductService;
 import lombok.RequiredArgsConstructor;
@@ -19,38 +19,32 @@ public class ProductController {
     private  final ProductService productService;
     @PostMapping("/products")
     public ResponseEntity createProduct(@RequestBody ProductDto productDto) {
-        return ResponseEntity.ok(productService.createProduct(productDto));
+        return ResponseEntity.ok(RestResponse.of(productService.createProduct(productDto)));
     }
     @GetMapping("/productsList")
     public ResponseEntity getProductsList(){
-        return ResponseEntity.ok(productService.getProductsList());
+        return ResponseEntity.ok(RestResponse.of(productService.getProductsList()));
     }
-    @GetMapping("/{id}")
-    public ResponseEntity getById(@PathVariable Long id){
-        return ResponseEntity.ok(productService.findById(id));
-    }
-
     @DeleteMapping("/{id}")
     public void delete(Long id){
+
         productService.deleteProduct(id);
     }
-
     @PutMapping("/products")
     public ResponseEntity updateProduct(@RequestBody UpdateProductDto updateProductDto){
-        return ResponseEntity.ok(productService.updateProduct(updateProductDto));
+        return ResponseEntity.ok(RestResponse.of(productService.updateProduct(updateProductDto)));
     }
     @PutMapping("/updateproductprice")
     public ResponseEntity updateProductPrice(@RequestBody UpdateProductPriceDto updateProductDto){
-        return ResponseEntity.ok(productService.updateProductPrice(updateProductDto));
+        return ResponseEntity.ok(RestResponse.of(productService.updateProductPrice(updateProductDto)));
     }
     @GetMapping("/getallproducttype")
     public ResponseEntity getAllProductsByProductType(@RequestParam ProductTypeEnum productTypeEnum){
-        return ResponseEntity.ok(productService.getAllByProductType(productTypeEnum));
+        return ResponseEntity.ok(RestResponse.of(productService.getAllByProductType(productTypeEnum)));
     }
     @GetMapping
-    public ResponseEntity findAllBetweenPrices(@RequestParam BigDecimal startPrice,
-                                               @RequestParam BigDecimal endPrice){
-        return ResponseEntity.ok(productService.findAllByProductPriceBetween(startPrice, endPrice));
+    public ResponseEntity findAllBetweenPrices(@RequestParam BigDecimal startPrice,@RequestParam BigDecimal endPrice){
+        return ResponseEntity.ok(RestResponse.of(productService.findAllByProductPriceBetween(startPrice, endPrice)));
     }
 
 }

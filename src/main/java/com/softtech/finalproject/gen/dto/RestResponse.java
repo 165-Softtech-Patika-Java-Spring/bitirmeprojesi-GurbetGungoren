@@ -1,4 +1,4 @@
-package com.softtech.finalproject.gen;
+package com.softtech.finalproject.gen.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
