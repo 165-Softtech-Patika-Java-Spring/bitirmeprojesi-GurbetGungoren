@@ -1,7 +1,9 @@
 package com.softtech.finalproject.gen.service;
 
+import com.softtech.finalproject.gen.entity.BaseEntity;
 import com.softtech.finalproject.gen.enums.GenErrorMessage;
 import com.softtech.finalproject.gen.exceptions.ItemNotFoundException;
+import com.softtech.finalproject.security.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
@@ -11,8 +13,9 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class BaseEntityService<E, D extends JpaRepository> {
+public abstract class BaseEntityService<E extends BaseEntity, D extends JpaRepository<E,Long>> {
     private final D dao;
+    private AuthenticationService authenticationService;
     public List<E> findAll(){
         return dao.findAll();
     }
