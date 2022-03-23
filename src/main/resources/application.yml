@@ -11,3 +11,13 @@ spring:
       ddl-auto: create-drop
 tax-rates:
   food: 0.01
+
+finalproject:
+  jwt:
+    security:
+      app:
+        key: SOFTTECH
+      expire:
+        time: 86400000
+
+
