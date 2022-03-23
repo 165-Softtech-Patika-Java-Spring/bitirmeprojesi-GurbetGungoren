@@ -12,7 +12,6 @@ import java.util.List;
 public interface ProductService {
     ProductResponse createProduct(ProductDto productDto);
     List<ProductResponse> getProductsList();
-    Object findById(Long id);
     void deleteProduct(Long id);
     ProductResponse updateProduct(UpdateProductDto updateProductDto);
     ProductResponse updateProductPrice(UpdateProductPriceDto updateProductPriceDto);

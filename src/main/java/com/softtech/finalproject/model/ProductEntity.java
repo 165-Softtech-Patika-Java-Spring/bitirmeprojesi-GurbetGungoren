@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @Table(name="PRODUCT")
-public class ProductEntity{
+public class ProductEntity extends BaseEntity{
     @Id
     @SequenceGenerator(name = "Product" , sequenceName = "PRODUCT_ID_SEQ")
     @GeneratedValue(generator = "Product")
@@ -20,7 +20,7 @@ public class ProductEntity{
     @Column(nullable = false)
     private String productName;
 
-    @Column(precision =19 ,scale = 2)
+    @Column(nullable = false,precision =19 ,scale = 2)
     private BigDecimal productPrice;
 
     @Column(nullable = false,precision =19 ,scale = 2)

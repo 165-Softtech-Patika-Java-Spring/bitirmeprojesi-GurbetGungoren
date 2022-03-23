@@ -4,7 +4,6 @@ import com.softtech.finalproject.dao.ProductDao;
 import com.softtech.finalproject.gen.service.BaseEntityService;
 import com.softtech.finalproject.model.ProductEntity;
 import com.softtech.finalproject.model.ProductTypeEnum;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -15,12 +14,11 @@ public class ProductEntityService extends BaseEntityService<ProductEntity,Produc
     public ProductEntityService(ProductDao dao) {
         super(dao);
     }
-
     public List<ProductEntity> findAllByProductType(ProductTypeEnum productTypeEnum) {
         return getDao().findAllByProductType(productTypeEnum);
     }
-
     public List<ProductEntity> findAllByProductPriceBetween(BigDecimal startPrice, BigDecimal endPrice) {
         return getDao().findAllByProductPriceBetween(startPrice, endPrice);
     }
+
 }

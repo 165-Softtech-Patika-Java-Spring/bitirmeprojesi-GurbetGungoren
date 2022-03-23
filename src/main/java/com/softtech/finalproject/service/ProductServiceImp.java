@@ -2,19 +2,18 @@ package com.softtech.finalproject.service;
 
 import com.softtech.finalproject.converter.ProductConverter;
 import com.softtech.finalproject.converter.ProductMapper;
-import com.softtech.finalproject.dao.ProductDao;
 import com.softtech.finalproject.dto.ProductDto;
 import com.softtech.finalproject.dto.ProductResponse;
 import com.softtech.finalproject.dto.UpdateProductDto;
 import com.softtech.finalproject.dto.UpdateProductPriceDto;
 import com.softtech.finalproject.enums.ProductErrorMessage;
+import com.softtech.finalproject.gen.exceptions.GenBusinessException;
 import com.softtech.finalproject.gen.exceptions.ItemNotFoundException;
 import com.softtech.finalproject.model.ProductEntity;
 import com.softtech.finalproject.model.ProductTypeEnum;
 import com.softtech.finalproject.service.EntityService.ProductEntityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -26,10 +25,9 @@ public class ProductServiceImp implements ProductService{
     private final ProductConverter productConverter;
     private final SellingPriceStrategy sellingPriceStrategy;
     private final ProductEntityService productEntityService;
-    private final ProductDao productDao;
-
     @Override
     public ProductResponse createProduct(ProductDto productDto) {
+        productValidator(productDto);
         BigDecimal sellingPrice=sellingPriceStrategy.calculateSellingPrice(productDto.getProductType(),productDto.getTaxFreeSellingPrice());
         ProductEntity productEntity= productConverter.convertToProduct(productDto,sellingPrice);
         ProductEntity product = productEntityService.save(productEntity);
@@ -44,14 +42,9 @@ public class ProductServiceImp implements ProductService{
     @Override
     public List<ProductResponse> getAllByProductType(ProductTypeEnum productTypeEnum){
         return productEntityService.findAllByProductType(productTypeEnum).stream()
-                .map(productEntity -> productConverter.convertToProductResponse(productEntity))
+                .map(productConverter::convertToProductResponse)
                 .collect(Collectors.toList());
     }
-    @Override
-    public Object findById(Long id) {
-        return null;
-    }
-
     @Override
     public void deleteProduct(Long id) {
         ProductEntity entity = productEntityService.getByIdWİthControl(id);
@@ -76,7 +69,7 @@ public class ProductServiceImp implements ProductService{
     @Override
     public List<ProductResponse> findAllByProductPriceBetween(BigDecimal startPrice, BigDecimal endPrice){
         return productEntityService.findAllByProductPriceBetween(startPrice, endPrice).stream()
-                .map(productEntity -> productConverter.convertToProductResponse(productEntity))
+                .map(productConverter::convertToProductResponse)
                 .collect(Collectors.toList());
     }
 
@@ -84,6 +77,13 @@ public class ProductServiceImp implements ProductService{
         boolean isExist= productEntityService.existsById(id);
         if (!isExist){
             throw new ItemNotFoundException(ProductErrorMessage.PRODUCT_ERROR_MESSAGE);
+        }
+    }
+    private void productValidator(ProductDto productDto){
+        ProductValidation.ValidationResult validationResult = ProductValidation.isProductsFieldNotEmpty().
+                and(ProductValidation.isProductPriceHigherThanZero()).apply(productDto);
+        if (validationResult!= ProductValidation.ValidationResult.SUCCESS){
+            throw new GenBusinessException(validationResult.getExceptionType());
         }
     }
 }
