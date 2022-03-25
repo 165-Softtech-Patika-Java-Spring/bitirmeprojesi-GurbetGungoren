@@ -7,6 +7,7 @@ import com.softtech.finalproject.service.EntityService.ProductCategoryEntityServ
 import com.softtech.finalproject.service.EntityService.ProductEntityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -19,6 +20,7 @@ public class ProductCategoryServiceImp implements ProductCategoryService{
     private final ProductEntityService productEntityService;
 
     @Override
+    @Transactional
     public Long updateTaxRates(ProductTypeEnum productTypeEnum, Double newTaxRates){
         ProductCategory productCategory = productCategoryEntityService.findProductCategoryByProductType(productTypeEnum);
         productCategory.setTaxRates(newTaxRates);
