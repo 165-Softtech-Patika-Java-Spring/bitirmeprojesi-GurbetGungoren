@@ -1,7 +1,7 @@
 package com.softtech.finalproject.security.controller;
 
-import com.softtech.finalproject.dto.UserResponse;
-import com.softtech.finalproject.dto.UserSaveRequestDto;
+import com.softtech.finalproject.dto.user.UserResponse;
+import com.softtech.finalproject.dto.user.UserSaveRequestDto;
 import com.softtech.finalproject.gen.dto.RestResponse;
 import com.softtech.finalproject.security.dto.SecurityLoginRequestDto;
 import com.softtech.finalproject.security.service.AuthenticationService;

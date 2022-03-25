@@ -1,14 +1,14 @@
 package com.softtech.finalproject.security.service;
 
-import com.softtech.finalproject.dto.UserResponse;
-import com.softtech.finalproject.dto.UserSaveRequestDto;
+import com.softtech.finalproject.dto.user.UserResponse;
+import com.softtech.finalproject.dto.user.UserSaveRequestDto;
 import com.softtech.finalproject.model.UserEntity;
 import com.softtech.finalproject.security.dto.SecurityLoginRequestDto;
 import com.softtech.finalproject.security.enums.EnumJwtConstant;
 import com.softtech.finalproject.security.sec.JwtTokenGenerator;
 import com.softtech.finalproject.security.sec.JwtUserDetails;
 import com.softtech.finalproject.service.EntityService.UserEntityService;
-import com.softtech.finalproject.service.UserService;
+import com.softtech.finalproject.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
