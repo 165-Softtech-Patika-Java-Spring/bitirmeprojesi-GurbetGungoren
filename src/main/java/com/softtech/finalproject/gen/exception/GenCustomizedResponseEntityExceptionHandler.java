@@ -60,7 +60,7 @@ public class GenCustomizedResponseEntityExceptionHandler extends ResponseEntityE
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 
         Date errorDate = new Date();
-        String message = "Validation failed!";
+        String message = "Validation failed !";
         String description = ex.getBindingResult().toString();
         GenExceptionResponse genExceptionResponse = new GenExceptionResponse(errorDate, message, description);
         RestResponse<GenExceptionResponse> restResponse = RestResponse.error(genExceptionResponse);
