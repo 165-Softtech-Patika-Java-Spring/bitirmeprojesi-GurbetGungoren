@@ -1,7 +1,7 @@
-#Projeyi Çalıştırmak İçin
-* 1-docker-compose.yml dosyasını çalıştırın
-* 2-projeyi ayağa kaldırın
-* 3-start.sql dosyasını çalıştırın
+## Projeyi Çalıştırmak İçin
+* 1-docker-compose.yml dosyasını çalıştırın.
+* 2-Projeyi çalıştırın.
+* 3-start.sql dosyasını çalıştırın.
 
 # Bitirme Projesi
 
