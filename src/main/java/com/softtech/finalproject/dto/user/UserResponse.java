@@ -1,13 +1,11 @@
-package com.softtech.finalproject.dto;
+package com.softtech.finalproject.dto.user;
 
 import lombok.Data;
 
 @Data
-public class UserUpdateRequestDto {
+public class UserResponse {
     private Long id;
     private String name;
     private String surname;
     private String userName;
-    private String password;
 }
-

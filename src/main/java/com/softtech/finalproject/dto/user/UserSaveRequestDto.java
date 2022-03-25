@@ -1,4 +1,4 @@
-package com.softtech.finalproject.dto;
+package com.softtech.finalproject.dto.user;
 
 import lombok.Builder;
 import lombok.Data;

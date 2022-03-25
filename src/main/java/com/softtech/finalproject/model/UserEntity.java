@@ -15,11 +15,11 @@ public class UserEntity extends BaseEntity {
     @SequenceGenerator(name = "UserEntity" , sequenceName = "USERS_ID_SEQ")
     @GeneratedValue(generator = "UserEntity")
     private Long id;
-    @Column(name = "NAME",nullable = false)
+    @Column(nullable = false)
     private String name;
-    @Column(name = "SURNAME",nullable = false)
+    @Column(nullable = false)
     private String surname;
-    @Column(name = "USERNAME",nullable = false,unique = true)
+    @Column(nullable = false,unique = true)
     private String userName;
     @Column(name = "PASSWORD",nullable = false)
     private String password;

@@ -1,12 +1,13 @@
 package com.softtech.finalproject.service.EntityService;
 
 import com.softtech.finalproject.dao.UserDao;
-import com.softtech.finalproject.dto.UserDto;
 import com.softtech.finalproject.gen.service.BaseEntityService;
 import com.softtech.finalproject.model.UserEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class UserEntityService extends BaseEntityService<UserEntity, UserDao> {
     public UserEntityService(UserDao dao) {
         super(dao);
