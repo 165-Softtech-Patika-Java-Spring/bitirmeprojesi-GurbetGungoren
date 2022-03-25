@@ -9,6 +9,9 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create-drop
+application:
+  title: Softtech Final Project
+  version: 1.0.0
 tax-rates:
   food: 0.01
 
