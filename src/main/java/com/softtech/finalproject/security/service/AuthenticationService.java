@@ -43,14 +43,11 @@ public class AuthenticationService {
     }
 
     public UserEntity getCurrentUser() {
-
         JwtUserDetails jwtUserDetails = getCurrentJwtUserDetails();
-
         UserEntity userEntity = null;
         if (jwtUserDetails != null){
-            userEntity = userEntityService.getByIdWİthControl(jwtUserDetails.getId());
+            userEntity = userEntityService.getByIdWithControl(jwtUserDetails.getId());
         }
-
         return userEntity  ;
     }
 

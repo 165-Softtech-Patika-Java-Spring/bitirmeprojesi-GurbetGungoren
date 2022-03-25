@@ -18,7 +18,7 @@ public class JwtUserDetailsService implements UserDetailsService {
         return JwtUserDetails.create(userName);
     }
     public UserDetails loadUserByUserName(Long id){
-        UserEntity userName = userEntityService.getByIdWİthControl(id);
+        UserEntity userName = userEntityService.getByIdWithControl(id);
         return JwtUserDetails.create(userName);
     }
 }
