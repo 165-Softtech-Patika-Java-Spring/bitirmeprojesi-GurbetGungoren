@@ -1,5 +1,6 @@
-package com.softtech.finalproject.dto;
+package com.softtech.finalproject.dto.product;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 

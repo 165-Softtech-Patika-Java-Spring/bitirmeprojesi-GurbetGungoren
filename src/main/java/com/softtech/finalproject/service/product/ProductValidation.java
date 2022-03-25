@@ -1,17 +1,14 @@
-package com.softtech.finalproject.service;
+package com.softtech.finalproject.service.product;
 
-import com.softtech.finalproject.dto.ProductDto;
+import com.softtech.finalproject.dto.product.ProductDto;
 import com.softtech.finalproject.gen.enums.BaseErrorMessage;
 import com.softtech.finalproject.gen.enums.GenErrorMessage;
-import com.softtech.finalproject.model.ProductEntity;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-
 import java.math.BigDecimal;
 import java.util.function.Function;
 
-import static com.softtech.finalproject.service.ProductValidation.ValidationResult.*;
+import static com.softtech.finalproject.service.product.ProductValidation.ValidationResult.*;
 
 public interface ProductValidation extends Function<ProductDto, ProductValidation.ValidationResult> {
     static ProductValidation isProductsFieldNotEmpty(){

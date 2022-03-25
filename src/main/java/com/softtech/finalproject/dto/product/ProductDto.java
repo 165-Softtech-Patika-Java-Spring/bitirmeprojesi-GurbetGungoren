@@ -1,4 +1,4 @@
-package com.softtech.finalproject.dto;
+package com.softtech.finalproject.dto.product;
 
 import com.softtech.finalproject.model.ProductTypeEnum;
 import lombok.Getter;

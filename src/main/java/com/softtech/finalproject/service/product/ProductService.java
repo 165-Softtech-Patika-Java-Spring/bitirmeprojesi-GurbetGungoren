@@ -1,15 +1,14 @@
-package com.softtech.finalproject.service;
+package com.softtech.finalproject.service.product;
 
-import com.softtech.finalproject.dto.ProductDto;
-import com.softtech.finalproject.dto.ProductResponse;
-import com.softtech.finalproject.dto.UpdateProductDto;
-import com.softtech.finalproject.dto.UpdateProductPriceDto;
+import com.softtech.finalproject.dto.product.*;
 import com.softtech.finalproject.model.ProductTypeEnum;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
-
+@Transactional
 public interface ProductService {
+    AllCategoryDetailsDto getAllCategoryDetails(ProductTypeEnum productTypeEnum);
     ProductResponse createProduct(ProductDto productDto);
     List<ProductResponse> getProductsList();
     void deleteProduct(Long id);
