@@ -32,7 +32,6 @@ public class ProductServiceImp implements ProductService{
         productValidator(productDto);
         //BigDecimal sellingPrice=sellingPriceStrategy.calculateSellingPrice(productDto.getProductType(),productDto.getTaxFreeSellingPrice());
         ProductCategory productCategory = productCategoryEntityService.findProductCategoryByProductType(productDto.getProductType());
-        //BigDecimal sellingPrice=productDto.getTaxFreeSellingPrice().add(productDto.getTaxFreeSellingPrice().multiply(new BigDecimal(productCategory.getTaxRates())));
         BigDecimal sellingPrice=calculateSellingPrice(productDto.getTaxFreeSellingPrice(), productCategory.getTaxRates());
         ProductEntity productEntity= productConverter.convertToProduct(productDto,sellingPrice,productCategory);
         ProductEntity product = productEntityService.save(productEntity);
@@ -61,7 +60,6 @@ public class ProductServiceImp implements ProductService{
         controlIsProductExist(updateProductDto.getId());
         ProductCategory productCategory = productCategoryEntityService.findProductCategoryByProductType(updateProductDto.getProductType());
         //BigDecimal sellingPrice = sellingPriceStrategy.calculateSellingPrice(updateProductDto.getProductType(), updateProductDto.getTaxFreeSellingPrice());
-        //BigDecimal sellingPrice=updateProductDto.getTaxFreeSellingPrice().add(updateProductDto.getTaxFreeSellingPrice().multiply(new BigDecimal(productCategory.getTaxRates())));
         BigDecimal sellingPrice=calculateSellingPrice(updateProductDto.getTaxFreeSellingPrice(),productCategory.getTaxRates());
         ProductEntity productEntity = productConverter.convertToProductfromUpdateDto(updateProductDto, sellingPrice,productCategory);
         return productConverter.convertToProductResponse(productEntityService.save(productEntity));
@@ -70,7 +68,6 @@ public class ProductServiceImp implements ProductService{
     public ProductResponse updateProductPrice(UpdateProductPriceDto updateProductPriceDto){
         ProductEntity productEntity = productEntityService.getByIdWithControl(updateProductPriceDto.getId());
         //BigDecimal sellingPrice = sellingPriceStrategy.calculateSellingPrice(updateProductPriceDto.getNewTaxFreePrice());
-        //BigDecimal sellingPrice=updateProductPriceDto.getNewTaxFreePrice().add(updateProductPriceDto.getNewTaxFreePrice().multiply(new BigDecimal(productEntity.getProductCategory().getTaxRates())));
         BigDecimal sellingPrice=calculateSellingPrice(updateProductPriceDto.getNewTaxFreePrice(),productEntity.getProductCategory().getTaxRates());
         productEntity.setTaxFreeSellingPrice(updateProductPriceDto.getNewTaxFreePrice());
         productEntity.setProductPrice(sellingPrice);

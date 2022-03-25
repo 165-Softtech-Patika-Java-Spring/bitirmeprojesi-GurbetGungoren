@@ -22,5 +22,7 @@ public class ProductEntityService extends BaseEntityService<ProductEntity,Produc
     public List<ProductEntity> findAllByProductPriceBetween(BigDecimal startPrice, BigDecimal endPrice) {
         return getDao().findAllByProductPriceBetween(startPrice, endPrice);
     }
-
+    public void saveAll(List<ProductEntity> list){
+        getDao().saveAll(list);
+    }
 }
