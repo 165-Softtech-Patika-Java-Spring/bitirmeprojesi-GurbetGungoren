@@ -26,7 +26,6 @@ public class ProductEntity extends BaseEntity{
     @Column(nullable = false,precision =19 ,scale = 2)
     private BigDecimal taxFreeSellingPrice;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private ProductTypeEnum productType;
+    @ManyToOne
+    private ProductCategory productCategory;
 }

@@ -11,6 +11,6 @@ import java.util.List;
 
 @Repository
 public interface ProductDao extends JpaRepository<ProductEntity,Long> {
-    List<ProductEntity> findAllByProductType(ProductTypeEnum productTypeEnum);
     List<ProductEntity> findAllByProductPriceBetween(BigDecimal startPrice,BigDecimal endPrice);
+    List<ProductEntity> findAllByProductCategory_ProductType(ProductTypeEnum productTypeEnum);
 }

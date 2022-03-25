@@ -1,9 +1,8 @@
 package com.softtech.finalproject.converter;
 
-import com.softtech.finalproject.dto.ProductDto;
-import com.softtech.finalproject.dto.ProductResponse;
-import com.softtech.finalproject.dto.UpdateProductDto;
-import com.softtech.finalproject.dto.UpdateProductPriceDto;
+import com.softtech.finalproject.dto.product.ProductDto;
+import com.softtech.finalproject.dto.product.ProductResponse;
+import com.softtech.finalproject.dto.product.UpdateProductDto;
 import com.softtech.finalproject.model.ProductEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;

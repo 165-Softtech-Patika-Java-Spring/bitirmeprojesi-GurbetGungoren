@@ -3,8 +3,11 @@ package com.softtech.finalproject.gen.service;
 import com.softtech.finalproject.gen.entity.BaseEntity;
 import com.softtech.finalproject.gen.enums.GenErrorMessage;
 import com.softtech.finalproject.gen.exceptions.ItemNotFoundException;
+import com.softtech.finalproject.model.UserEntity;
 import com.softtech.finalproject.security.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,11 @@ import java.util.Optional;
 public abstract class BaseEntityService<E extends BaseEntity, D extends JpaRepository<E,Long>> {
     private final D dao;
     private AuthenticationService authenticationService;
+@Autowired
+    public void setAuthenticationService(@Lazy AuthenticationService authenticationService) {
+        this.authenticationService = authenticationService;
+    }
+
     public List<E> findAll(){
         return dao.findAll();
     }
@@ -28,7 +36,7 @@ public abstract class BaseEntityService<E extends BaseEntity, D extends JpaRepos
     public void delete(E entity){
         dao.delete(entity);
     }
-    public E getByIdWİthControl(Long id){
+    public E getByIdWithControl(Long id){
         Optional<E> entityOptional = findById(id);
         E entity;
         if(entityOptional.isPresent()){
@@ -44,5 +52,9 @@ public abstract class BaseEntityService<E extends BaseEntity, D extends JpaRepos
     }
     public D getDao() {
         return dao;
+    }
+    private String getUserName(){
+        String userName = authenticationService.getCurrentUser().getUserName();
+        return userName;
     }
 }
